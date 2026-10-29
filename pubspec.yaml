@@ -1,0 +1,33 @@
+name: hoang_hung_cuong_kt
+description: "SmartCheck HHC - ung dung cham cong nhan vien (Hoang Hung Cuong)"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  dio: ^5.11.1
+  flutter_secure_storage: ^11.2.0
+  intl: ^0.20.3
+  qr_flutter: ^4.1.0
+  camera: ^0.12.0+2
+  google_mlkit_barcode_scanning: ^0.15.0
+  google_mlkit_face_detection: ^0.14.0
+  permission_handler: ^12.0.1
+  geolocator: ^14.1.2
+  flutter_map: ^8.3.2
+  latlong2: ^0.10.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
