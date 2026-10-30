@@ -1,0 +1,51 @@
+Hoang Hung Cuong
+2380600251
+23DTHE1
+
+
+
+Đề kiểm tra môn học (40%)
+Xây dựng ứng dụng di động có các chức năng sau:
+1. Đăng ký tài khoản qua email (test đang lỗi)
+   hoặc Đăng ký bằng bên thứ 3: Backend dùng OAuth2.0
+   -> 3/10
+
+2. Đăng nhập
+   - Tên đăng nhập + mật khẩu + OTP (SMS OTP, Email OTP)
+   -> 10/10
+
+3. Phân quyền người dùng:
+   - Nếu người dùng là admin: vào trang quản trị
+   - Nếu người dùng là nhân viên: vào Dashboard của nhân viên tương ứng
+   - Nếu người dùng là khách hàng hoặc...: Vào trang tương ứng
+   -> 10/10
+
+4. Các chức năng CRUD
+   -> 4.5/4.5 (đã đạt yêu cầu)
+
+5. Chọn 3 trong 6 chức năng đã làm thuyết trình
+   a. Đăng nhập bằng khuôn mặt
+   b. Chia sẻ vị trí
+   c. Gọi video nhóm
+   d. Đo tiếng ồn hoặc chuyển động hoặc áp suất
+   e. Nhận diện vân tay/NFC/QR/Barcode
+   f. Dịch realtime, ảnh chụp...
+   -> Đã chọn: Đăng nhập bằng khuôn mặt, nhận diện vân tay/NFC/QR/Barcode, dịch realtime/ảnh chụp
+   -> 3.5/3.5
+
+6. Tính năng mới mà các app hiện tại tương ứng chưa có (tự đề xuất)
+   -> 1/1
+
+7. Giao diện đẹp, dễ dùng, cả nhóm chạy được (xong)
+   -> 1/1
+
+8. Lần đầu đăng nhập bằng mật khẩu/OTP, lần sau có thể đăng nhập bằng khuôn mặt + vân tay
+   -> 0.5/2( chưa được)
+
+9. Trong phần cài đặt: cho phép thay đổi cỡ chữ, màu nền và cập nhật hồ sơ
+   -> 1.5/2
+
+
+Tổng điểm theo thang 10: 7.5/10
+
+

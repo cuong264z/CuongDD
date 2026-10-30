@@ -1,3 +1,5 @@
+import 'package:google_sign_in/google_sign_in.dart';
+
 import '../core/session.dart';
 import '../models/entities.dart';
 import 'api_client.dart';
@@ -34,6 +36,27 @@ class AuthService {
   static Future<Profile> me() async => Profile.fromJson(await Api.get('/api/auth/me') as Map<String, dynamic>);
 
   static Future<void> logout() => Session.clear();
+
+  static Future<bool> hasSavedToken() async {
+    return Session.isLoggedIn;
+  }
+
+  /// Đăng nhập bằng Google
+  static Future<AuthResult?> loginWithGoogle() async {
+    final googleSignIn = GoogleSignIn(scopes: ['email', 'profile']);
+    final googleUser = await googleSignIn.signIn();
+    if (googleUser == null) return null;
+
+    final googleAuth = await googleUser.authentication;
+    final idToken = googleAuth.idToken;
+    if (idToken == null) throw Exception('Không lấy được token xác thực từ Google');
+
+    final res = await Api.post('/api/auth/google-login', {
+      'idToken': idToken,
+      'deviceId': await Session.deviceId(),
+    });
+    return _store(res);
+  }
 
   static Future<AuthResult> _store(dynamic json) async {
     final result = AuthResult.fromJson(json as Map<String, dynamic>);

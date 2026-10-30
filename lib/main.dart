@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'app/settings_controller.dart';
 import 'app/theme.dart';
 import 'core/api.dart';
 import 'core/session.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
   // Màn hình chấm công (camera, khuôn mặt) được tính toán cho chiều dọc.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Session.load();
+  await SettingsController.instance.loadSettings();
 
   // Token hết hạn (12 giờ) → về màn đăng nhập.
   onSessionExpired = () {
@@ -30,11 +32,25 @@ class HhcApp extends StatelessWidget {
   const HhcApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        title: 'SmartCheck HHC',
-        debugShowCheckedModeBanner: false,
-        navigatorKey: navigatorKey,
-        theme: buildTheme(),
-        home: Session.isLoggedIn ? RoleRouter.pageFor(Session.role) : const LoginScreen(),
-      );
+  Widget build(BuildContext context) {
+    final settings = SettingsController.instance;
+
+    return ValueListenableBuilder<bool>(
+      valueListenable: settings.isDarkModeNotifier,
+      builder: (_, isDark, __) {
+        return ValueListenableBuilder<double>(
+          valueListenable: settings.fontSizeFactorNotifier,
+          builder: (_, fontFactor, __) {
+            return MaterialApp(
+              title: 'SmartCheck HHC',
+              debugShowCheckedModeBanner: false,
+              navigatorKey: navigatorKey,
+              theme: buildTheme(isDark: isDark, fontFactor: fontFactor),
+              home: Session.isLoggedIn ? RoleRouter.pageFor(Session.role) : const LoginScreen(),
+            );
+          },
+        );
+      },
+    );
+  }
 }

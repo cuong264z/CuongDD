@@ -48,10 +48,20 @@ class Session {
     userId = '';
     fullName = '';
     email = '';
-    // Giữ lại mã thiết bị: server gắn tài khoản với máy, đăng xuất không được làm đổi mã này.
+
+    // Giữ lại mã thiết bị và trạng thái Bật/Tắt Vân tay/Khuôn mặt
     final device = await _store.read(key: _deviceKey);
+    final biometric = await _store.read(key: 'app_biometric_enabled');
+    final isDark = await _store.read(key: 'app_is_dark');
+    final fontFactor = await _store.read(key: 'app_font_factor');
+
     await _store.deleteAll();
+
+    // Khôi phục lại các cài đặt cá nhân & mã thiết bị
     if (device != null) await _store.write(key: _deviceKey, value: device);
+    if (biometric != null) await _store.write(key: 'app_biometric_enabled', value: biometric);
+    if (isDark != null) await _store.write(key: 'app_is_dark', value: isDark);
+    if (fontFactor != null) await _store.write(key: 'app_font_factor', value: fontFactor);
   }
 
   static const _deviceKey = 'device_id';
